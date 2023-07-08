@@ -4,9 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="22dp"
     app:contentPadding="8dp"
-    android:layout_margin="4dp">
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
 
     <RelativeLayout
         android:id="@+id/relative"
