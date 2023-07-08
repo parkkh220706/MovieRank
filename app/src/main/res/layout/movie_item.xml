@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:text="랭킹"
-            android:textSize="24sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/movieNm"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="영화제목"
-            android:textSize="24sp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/openDt"

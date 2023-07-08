@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hong_dev.movierank.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,10 +17,13 @@ import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        binding.recyclerview.layoutManager = LinearLayoutManager(this)
         setContentView(binding.root)
 
         val now = LocalDateTime.now()
@@ -32,18 +36,17 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val service: RetrofitService = retrofit.create(RetrofitService::class.java)
-
         val call: Call<MovieResponse> = service.getBoxOffice("e53b7f88ed7c3e955e30d8e5ed764752", "20230705")
 
         call.enqueue(object  : Callback<MovieResponse>{
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                if(response.isSuccessful){
-                    val movieResponse = response.body()
-                    val dailyBoxOfficeList = movieResponse?.boxOfficeResult?.dailyBoxOfficeList
 
-                    binding.recyclerView.adapter = MyAdapter(this@MainActivity, dailyBoxOfficeList)
+                    var movieResponse: MovieResponse? = response.body()
+                    var dailyBoxOfficeList = movieResponse?.boxOfficeResult?.dailyBoxOfficeList
 
-                }
+                    binding.recyclerview.adapter=MyAdapter(this@MainActivity, dailyBoxOfficeList!!)
+
+
 
             }
 
