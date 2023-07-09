@@ -2,7 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="main_theme">#363939</color>
+    <color name="main_theme">#7b9acc</color>
+    <color name="font">#FCF6F5</color>
+    <color name="font2">#50586C</color>
 
 
 </resources>

@@ -12,8 +12,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -26,9 +27,13 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
         setContentView(binding.root)
 
-        val now = LocalDateTime.now()
-        val formatDate = DateTimeFormatter.ISO_DATE
-        val nowDate = now.format(formatDate)
+        binding.tvToday.text = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault()).format(Calendar.getInstance().time)
+
+        val cal: Calendar = Calendar.getInstance()
+        cal.add(Calendar.DAY_OF_MONTH, -1)
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        val targetDt = dateFormat.format(cal.time)
+
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://www.kobis.or.kr")
@@ -36,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val service: RetrofitService = retrofit.create(RetrofitService::class.java)
-        val call: Call<MovieResponse> = service.getBoxOffice("e53b7f88ed7c3e955e30d8e5ed764752", "20230705")
+        val call: Call<MovieResponse> = service.getBoxOffice("e53b7f88ed7c3e955e30d8e5ed764752", targetDt)
 
         call.enqueue(object  : Callback<MovieResponse>{
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {

@@ -10,9 +10,43 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="100dp">
 
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumeb"
+            android:padding="10dp"
+            android:text="오늘, 영화랭킹"
+            android:textColor="@color/font"
+            android:textSize="40sp" />
 
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기준일"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/font"
+            android:fontFamily="@font/nanumeb"
+            android:padding="0dp"
+            android:layout_marginRight="70dp"
+            android:layout_alignRight="@id/tv_title"/>
+
+        <TextView
+            android:id="@+id/tv_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20230709"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanumeb"
+            android:padding="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            />
 
     </RelativeLayout>
 
